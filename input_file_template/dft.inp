@@ -1,0 +1,6 @@
+3 30 
+diode #geometry
+109 109 201 #box size
+0.25 0.25 0.25 #grid size
+50
+50

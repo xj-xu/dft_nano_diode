@@ -1,0 +1,288 @@
+% ****** Start of file apssamp.tex ****** 
+%
+%   This file is part of the APS files in the REVTeX 4.1 distribution.
+%   Version 4.1r of REVTeX, August 2010
+%
+%   Copyright (c) 2009, 2010 The American Physical Society.
+%
+%   See the REVTeX 4 README file for restrictions and more information.
+%
+% TeX'ing this file requires that you have AMS-LaTeX 2.0 installed
+% as well as the rest of the prerequisites for REVTeX 4.1
+%
+% See the REVTeX 4 README file
+% It also requires running BibTeX. The commands are as follows:
+%
+%  1)  latex apssamp.tex
+%  2)  bibtex apssamp
+%  3)  latex apssamp.tex
+%  4)  latex apssamp.tex
+% [12pt,pra,notitlepage,tightenlines,reprint]{revtex4-1}
+\documentclass[% 
+ reprint,
+%superscriptaddress,
+%groupedaddress,
+%unsortedaddress,
+%runinaddress,
+%frontmatterverbose, 
+%preprint,
+%showpacs,preprintnumbers,
+%nofootinbib,
+%nobibnotes,
+%bibnotes,
+ amsmath,amssymb,
+% aps,
+pra,
+%prb,
+%rmp,
+%prstab,
+%prstper,
+%floatfix,
+tightenlines
+]{revtex4-1}
+
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+%\usepackage{caption}
+%\usepackage{subcaption}
+\graphicspath{ {images/} }
+
+%\usepackage{hyperref}% add hypertext capabilities
+%\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+%\linenumbers\relax % Commence numbering lines
+
+%\usepackage[showframe,%Uncomment any one of the following lines to test 
+%%scale=0.7, marginratio={1:1, 2:3}, ignoreall,% default settings
+%%text={7in,10in},centering,
+%%margin=1.5in,
+%%total={6.5in,8.75in}, top=1.2in, left=0.9in, includefoot,
+%%height=10in,a5paper,hmargin={3cm,0.8in},
+%]{geometry}
+
+\newcommand{\rvec}{\mathbf{r}} % bold r for vectors
+\newcommand{\kvec}{\mathbf{k}} % bold k for vectors
+\newcommand{\Kvec}{\mathbf{K}} % bold K for vectors
+\newcommand{\gvec}{\mathbf{g}} % bold g for vectors
+\newcommand{\Avec}{\mathbf{A}} % bold A for vectors
+\newcommand{\rev}[1]{{\color{red} #1}}
+
+\begin{document}
+
+\title{Simulation of Laser-Induced Rectification in a Nano-scale Diode}
+
+%\thanks{A footnote to the article title}%
+
+\author{Daniel Kidd}
+\affiliation{Department of Physics and Astronomy, Vanderbilt University, Nashville, Tennessee 37235, USA}
+\author{Xiaojia Xu}
+\affiliation{Department of Physics and Astronomy, Vanderbilt University, Nashville, Tennessee 37235, USA}
+\author{Cody Covington}
+\affiliation{Department of Physics and Astronomy, Vanderbilt University, Nashville, Tennessee 37235, USA}
+\author{Kazuyuki Watanabe}
+%\email{kazuyuki@rs.kagu.tus.ac.jp}
+\affiliation{Department of Physics, Tokyo University of Science, Shinjuku, Tokyo 162-8601, Japan}
+\author{K\'alm\'an Varga}
+\email{kalman.varga@vanderbilt.edu}
+\affiliation{Department of Physics and Astronomy, Vanderbilt University, Nashville, Tennessee 37235, USA}
+
+\date{\today}% It is always \today, today,
+             %  but any date may be explicitly specified
+
+
+\begin{abstract}
+ 
+Time-dependent density functional theory is utilized to simulate a an asymmetrical jellium model, representing a nano-scale vacuum-tube diode comprised of bulk lithium. A sharp tip on one end of the jellium model allows for enhanced field emission upon interaction with an external laser field, leading to a preferential net current direction. The rate of electron transfer between the effective anode and cathode tips is investigated by observing the effects of varying the the separation distance between the tips as well as the intensity and phase of the applied laser.
+
+\end{abstract}
+
+%\pacs{Valid PACS appear here}% PACS, the Physics and Astronomy
+                             % Classification Scheme.
+%\keywords{Suggested keywords}%Use showkeys class option if keyword
+                              %display desired
+\maketitle
+
+%\tableofcontents
+
+%=========================================================================================%
+%                                                                                         %
+%                                    INTRODUCTION                                         %
+%                                                                                         %
+%=========================================================================================%
+
+%\section{\label{sec:intro}Introduction}
+
+The modern age of electronics was marked by the development of the integrated circuit whose foundation was the semiconductor-based transistor. This technology allowed for low power consumption, reliability, and intuitive circuit design, thereby outpacing and replacing the earlier relied upon vacuum-tube-based implements. Such semiconductor-based devices have been the backdrop of the advancing field of electronics for many years; however, as the push for ultrafast operating speeds approaches the petahertz range \cite{0034-4885-80-5-054401}, the electron transport velocity of semiconductor transistors presents a formidable obstacle. Recent research has pointed back in the direction of vacuum transport as a path towards achieving such higher speeds \cite{doi:10.1063/1.4907607,doi:10.1063/1.2944267,doi:10.1021/acs.nanolett.6b04363}, motivated by improved ultrafast laser-guidance of electrons \cite{Yoshioka2016,Kruger2011,Jelic2017,Rybka2016,doi:10.1063/1.4974529,Schiffrin2013,Jeon2016,doi:10.1063/1.4867185}. 
+
+In this study, we focus on the template of Higuchi \textit{et al} \cite{doi:10.1063/1.4907607} who take advantage of asymmetric near-field enhancement of two facing tungsten tips in order to achieve laser-driven rectification. It was found that by inducing electron emission from either tip using a few-cycle laser pulse, a sharper tip may act as an anode and an opposite dull tip may act as a cathode due to the relative emission rates which allow for an effective one-way total current. Because of the short duration of the multi-photon photoemission process, the high kinetic energy of the emitted electrons, and the sub-micron separation distance between the opposing tips, it was claimed that this device was able to operate on the sub-picosecond timescale. Furthermore, it was noted that faster electron transport may be possible for smaller separation distances due to stronger field enhancement and, in the sub-nanometer separation regime, prominent tunneling channels \cite{Savage2012}.   
+
+
+This investigation of laser-driven nano-scale rectification is pursued by means of simulation via real-time time-dependent density functional theory (RT-TDDFT) applied to a jellium model of a lithium cluster. We employ the local density approximation (LDA) which has been shown, in conjuncture with jellium models, to yield results which well resemble the description of electronic excitations in bulk metal counterparts \cite{PhysRevB.54.4484,PhysRevLett.52.1925,RevModPhys.65.677,PhysRevA.51.1327,doi:10.1021/nl803811g}. By choosing a jellium shape which models facing sharp and flat tips and exciting the system with an homogeneous, laser field, we expect to simulate the effect of a preferential net current direction. The strength of this current may then be studied with respect to varying parameters such as the separation distance between tips and the intensity of the laser field. 
+
+
+
+%=========================================================================================%
+%                                                                                         %
+%                                         MODEL                                           %
+%                                                                                         %
+%=========================================================================================%
+
+%\section{\label{sec:mod}Model}
+
+The shape of our lithium jellium model is that of a cylinder with one end capped by a cone, see Fig. \ref{fig:shape} 
+ The sharp tip of the jellium is expected to induce field enhancement\cite{PhysRevLett.86.540} which, in turn, is expected to result in amplified electron emission at that site. Periodic boundary conditions are enforced so that electron density leaving from either end of the jellium model travels between the two sites by wrapping through the boundary of the computational box, a process analogous to the facing tips of Higuchi \textit{et al}. 
+
+The directionally favored electron emission is expected to lead to a preferential net current direction traveling in the direction of sharp tip to flat tip. The flux is to be measured at the midpoint between the two tips and then integrated with respect to time in order to determine the effective rate of electron density transfer. \rev{The cylindrical portion of the jellium is given a radius of 3.43 {\AA}, with the angle of the cone-shape cap as $80^{\circ}$. The total length of the shape is then 20 {\AA}, in order to yield a volume corresponding to a cluster of 30 lithium atoms.} The length of the box may be adjusted in order to vary the separation distance between the tips.   
+
+\begin{figure}[ht]
+	\includegraphics[width=.45\textwidth]{./figures/shape/shape2.pdf}
+	\caption{Schematic of two neighboring cells within model system. The jellium diode shape (dark blue) is centered within a periodic computational box of width 27 {\AA} in directions perpendicular to the axis of symmetry. 
+The length of the box is adjusted in order to vary the effective separation distance, $D$, between the sharp and flat ends of the diode shape. The sharp cone tip experiences enhanced field emission (light blue), resulting in a preferential current in the direction of sharp end to flat end (left to right in this schematic). The flux is measured at the midpoint between the two tips (red), which is essentially either the left or right boundary of the box. \rev{The dashed line box indicates the similarity of this model to the facing nano-scale tips of Higuchi \textit{et al} \cite{doi:10.1063/1.4907607}.} }
+\label{fig:shape}
+\end{figure} 
+
+
+
+
+%=========================================================================================%
+%                                                                                         %
+%                                     FORMALISM                                           %
+%                                                                                         %
+%=========================================================================================%
+
+%\section{\label{sec:form}Formalism}
+
+
+In RT-TDDFT, one describes the evolution of the electron density, $\rho(\rvec,t)$, by solving the time-dependent Kohn--Sham equation, 
+\begin{equation}
+i\hbar \frac{\partial \phi_j(\rvec, t)}{\partial t} = \left[-\frac{\hbar^2}{2m}\nabla^2 + V_\text{KS}[\rho](\rvec, t)\right]\phi_j(\rvec, t),
+\label{eq:tdks}
+\end{equation}
+in order to obtain the time dependent Kohn--Sham orbitals, $\phi_j(\rvec, t)$. The density may then be determined as
+\begin{equation}
+\rho(\rvec, t) = 2\sum_{j=1}^N |\phi_j(\rvec, t)|^2,
+\end{equation}
+where $N$ represents the total number of orbitals employed. 
+The Kohn--Sham potential, $V_\text{KS}[\rho]$, is a functional of the density and consists of three terms: \rev{1.} the Hartree potential,
+\begin{equation}
+V_\text{H}(\rvec,t) = \frac{1}{4\pi\epsilon_0}\int \frac{\rho(\rvec, t)}{|\rvec-\rvec'|}d\rvec',
+\label{eq:Hartree}
+\end{equation}
+which governs the approximate electron-electron Coulomb interaction, \rev{2.} the exchange-correlation potential, for which we are using the LDA, and \rev{3.} the external potential, $V_\text{ext}$, which corresponds to all other interactions.
+
+
+In this simulation, the external potential consists of two interactions, 
+\begin{equation}
+\rev{V_\text{ext}} = V_\text{bg} + V_\text{laser}.
+\label{eq:ext}
+\end{equation}
+The first is with respect to the static, positive background density,  
+\begin{equation}
+V_\text{bg}(\rvec) = \frac{-1}{4\pi\epsilon_0}\int \frac{\rho_\text{bg}(\rvec)}{|\rvec-\rvec'|}d\rvec'. 
+\label{eq:bg}
+\end{equation}
+Here, $\rho_\text{bg}(\rvec)$ is homogeneous within the boundary of the chosen jellium model shape, where the value is determined using the density parameter $r_s=1.72$ {\AA}, corresponding to bulk lithium. 
+The second is that of the external laser field, which is represented by it's associated vector potential $\mathbf{A}(t)$:
+\begin{equation}
+V_\text{laser}(\rvec,t) = \frac{1}{2m}|\mathbf{A}(t)|^2 - \frac{i\hbar}{m}\mathbf{A}(t)\cdot\nabla.
+\label{eq:bg}
+\end{equation}
+This representation is known as velocity gauge and is most commonly expressed in combination with the kinetic term in Eq. \eqref{eq:tdks} in order to concisely write a modified kinetic energy term,
+\begin{equation}
+T(\rvec,t) = \frac{1}{2m}\left[-i\hbar\nabla + \mathbf{A}(t)\right]^2.
+\end{equation}
+The form of the laser field used is a variation of the smooth turn-on pulse \cite{compnano_varga},
+\begin{equation}
+\label{eq:laser}
+\mathbf{E}(t)=
+\begin{cases}
+\hphantom{-}\mathbf{E}_0\sin\left(\dfrac{\pi t}{2T_\text{r}}\right)\sin(\omega t+\varphi), &\text{if $0 \leq t \leq T_\text{r}$},\\[2ex]
+\hphantom{-}{\mathbf{E}_0}\sin(\omega t+\varphi), &\text{otherwise},
+\end{cases}
+\end{equation}
+\rev{where $T_\text{r}$ is the ramping time and $\varphi$ is the phase of the laser}. 
+The vector potential is then determined as
+\begin{equation}
+\mathbf{A}(t) = -\int_0^t \mathbf{E}(t')dt'.
+\end{equation}
+
+The Volkov state basis representation is used to describe and time propagate the Kohn--Sham orbitals \cite{PhysRevA.95.013414}. This propagation technique is best suited for describing interactions with intense laser fields and allows for greater computational speeds than other conventional propagation methods. 
+
+
+
+%=========================================================================================%
+%                                                                                         %
+%                           NUMERICAL RESULTS AND DISCUSSION                              %
+%                                                                                         %
+%=========================================================================================%
+
+
+
+%\section{\label{sec:res}Results}
+
+\begin{figure}[ht]
+	\includegraphics[width=.45\textwidth]{./figures/example_fit/example_fit.pdf}
+	\caption{\rev{Probability density transfered through the plane bisecting the two jellium model edges (top) for the example case of $D=30$ {\AA}, using a laser field of $I=1.33 \times 10^{13}$ W/$\text{cm}^2$ and $T_\text{r}=2.48$ fs (bottom).} A linear fit (blue) was fit by linear regression applied to the data sampled between $t=3$ and $t=10$ fs (red).}
+\label{fig:example_fit}
+\end{figure} 
+
+ The jellium model system was subjected to a laser of wavelength 780 nm, polarized parallel to the axis of symmetry, which induced an oscillating current in the computational box. \rev{The resulting flux, determined at the plane bisecting the two edges of the jellium model, $S$, as 
+\begin{equation}
+\Phi(t)= \frac{\hbar}{mi}\sum_{j=1}^N\int\left(\phi_j^*\nabla\phi_j-\phi_j\nabla\phi_j^*\right)dS, 
+\end{equation}
+was integrated over time in order to ascertain the probability density transfered, $N_\text{tr}$:
+\begin{equation}
+N_\text{tr}(t)=\int_0^t \Phi(t')dt'.
+\end{equation}}
+
+Figure \ref{fig:example_fit} shows this result for an example scenario of a separation distance, $D$, of 30 {\AA}, a field intensity, $I$, of $1.33 \times 10^{13}$ W/$\text{cm}^2$, and a short field ramping time of $T_\text{r}=2.48$ fs. Here, positive probability transferred relates to a transfer motion of sharp to flat edges of the jellium model, i.e. left to right with respect to the schematic in Fig. \ref{fig:shape}. In each simulation, the small time regime ($t\le15$ fs) was well described by a linear trending sine curve. This section was fit by means of linear regression and the probability density transfer rate, $k_\text{tr}$, was determined as the slope of the resulting trend line. 
+
+\begin{figure}[ht]
+	\includegraphics[width=.30\textwidth]{./figures/phase/phase2.pdf}
+	\caption{Phase dependence of the probability density transfer rate for (a) a \rev{symmetric jellium cylinder shape without a cone cap} and with a ramping time of $T_\text{r}=2.48$ fs, (b) the diode jellium model with a ramping time of $T_\text{r}=2.48$ fs, and (c) the diode jellium model with a ramping time of $T_\text{r}=9.94$ fs. For results using the shorter ramping time, a sinusoidal fit (blue line) shifted by an offset along the y-axis (dased red line) was determined via linear regression. Each simulation employed parameters $D=30$ {\AA} and $I=1.33 \times 10^{13}$ W/$\text{cm}^2$.}
+\label{fig:phase}
+\end{figure} 
+
+ The laser phase dependence of the transfer rate is shown in Fig. \ref{fig:phase} for parameters $D=30$ {\AA} and $I=1.33 \times 10^{13}$ W/$\text{cm}^2$. \rev{A symmetrically shaped cylinder without a cone cap} was substituted in Fig. \ref{fig:phase}a in order to serve as a control test under geometrically symmetric conditions. In this case, the trend is well described as a sine curve, \rev{whose} vertical shift only varies from the zero axis by 0.004 $\text{fs}^{-1}$. This trend indicates that no particular direction along the axis of symmetry is favored. However, for the case of the diode shape, Fig. \ref{fig:phase}b, the same trend may be applied with an offset of 0.080 $\text{fs}^{-1}$, indicating a preferential current in the direction of sharp to flat edges. A longer ramping time of $T_\text{r}=9.94$ fs was also employed using the diode shape, Fig. \ref{fig:phase}c, in order to demonstrate positive transfer rates for any choice of phase. In this case, no such discernible trend was determined.  
+
+\begin{figure}[ht]
+	\includegraphics[width=.35\textwidth]{./figures/sep_dist_dep/sep_dist_dep.pdf}
+	\caption{Separation distance dependence of the probability density transfer rate for the jellium diode shape using a ramping time of $T_\text{r}=9.94$ fs and an intensity of $I=1.33 \times 10^{13}$ W/$\text{cm}^2$. Data points have been connected with a solid line in order to guide the eye.}
+\label{fig:sep_dist_dep}
+\end{figure} 
+
+
+\begin{figure}[ht]
+	\includegraphics[width=.35\textwidth]{./figures/intensity_dep/intensity_dep.pdf}
+	\caption{Intensity dependence of the probability density transfer rate for the jellium diode shape using a ramping time of $T_\text{r}=9.94$ fs and a separation distance of $D=30$ \AA. Data points have been connected with a solid line in order to guide the eye.}
+\label{fig:intensity_dep}
+\end{figure} 
+
+The dependence of the transfer rate on the separation distance is presented in Fig. \ref{fig:sep_dist_dep}. For each value of $D$, two simulations were performed using a phase of either 0 or $\pi$. The two results for $k_\text{tr}$ were then averaged together in order to eliminate the phase dependence. For smaller separation distances, the potential barrier is thin and tunneling serves as the predominate means of transport. As the separation distance is increased, this role is replaced by transport via multiphoton ionization and the transfer rate begins to level off.   
+Figure \ref{fig:intensity_dep} shows the dependence of the transfer rate on the intensity of the laser field. These simulations were similarly performed twice each in order to average results for laser phases of 0 and $\pi$. As the intensity rises, so too does the transfer rate. However, at large enough intensities, as in this case of around $I=3 \times 10^{13}$ W/$\text{cm}^2$, the emission from either edge begins to become comparable and the  trend in $k_\text{tr}$ levels off. 
+
+
+
+%=========================================================================================%
+%                                                                                         %
+%                                      CONCLUSION                                         %
+%                                                                                         %
+%=========================================================================================%
+
+
+%\section{\label{sec:con}Conclusion}
+
+In conclusion, we have computationally demonstrated laser-induced rectification by simulating the effects of increased electron emission due to near field enhancement within a periodic jellium system with geometrical asymmetry. Such behavior opens the door for new nano-scale ``vacuum-tube-based'' devices which take advantage of the enhanced transport rate of electrons in vacuum, as compared to the relatively limited electron transport rates in conventional semiconductor-based devices. Our findings show a nearly exponential increase in transport rate when facing anode and cathode tips are close enough to one another as to allow for transport via tunneling. Furthermore, we have shown an increase in transport rate for higher laser intensities; however, for high enough laser intensities, the local near field enhancement becomes negligible and rectification becomes less prominent.
+
+
+
+
+\bibliographystyle{apsrev4-1.bst}
+\bibliography{references}
+\end{document}
+
+
